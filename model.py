@@ -27,13 +27,18 @@ class Weapon:
             rand = randint(1, 100)
             print(rand)
             w_type = (
-                'pistol' if rand < 53 else 'shotgun' if rand < 83 else 'pp' if rand < 93 else 'assault' if rand < 98 else 'sniper')
+                'Пистолет' if rand < 53 else 'Дробовик' if rand < 83 else 'Пистолет-пулемет' if rand < 93 else 'Автомат' if rand < 98 else 'Снайперская винтовка')
         # ТИР 1, 2, 3
         if w_tier is None:
             rand = randint(1, 1000)
             w_tier = (1 if rand < 700 else 2 if rand < 900 else 3)
 
-        self._cond = randint(w_min_cond, 99)
+        # СОСТОЯНИЕ
+        if w_min_cond is None:
+            self._cond = randint(30, 90)
+        else:
+            self._cond = randint(w_min_cond, 99)
+
         self.type = w_type
         self.tier = w_tier
         self.name = choice(list(weapons[self.type][self.tier]))
@@ -56,28 +61,28 @@ class Weapon:
         self.min_acc = round(self.max_acc / 100 * self._cond)
 
 
-while True:
-    weapon = Weapon(w_type='assault', w_tier=randint(2, 3), w_min_cond=90)
-
-    print(f"{'Имя:'} - {weapon.name}")
-    print(f"{'Тип:'} - {weapon.type}")
-    print(f"{'Тир:'} - {weapon.tier}")
-    print(f"{'Состояние:'} - {weapon.cond}%")
-    print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
-    print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
-    print(f"{'Пробивание:'} - {weapon.pen}")
-    print(f"{'Авторежим:'} - {weapon.is_auto}")
-
-    input()
-    weapon.cond -= 10
-
-    print(f"{'Имя:'} - {weapon.name}")
-    print(f"{'Тип:'} - {weapon.type}")
-    print(f"{'Тир:'} - {weapon.tier}")
-    print(f"{'Состояние:'} - {weapon.cond}%")
-    print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
-    print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
-    print(f"{'Пробивание:'} - {weapon.pen}")
-    print(f"{'Авторежим:'} - {weapon.is_auto}")
-
-    input()
+# while True:
+#     weapon = Weapon(w_type='Автомат', w_tier=randint(2, 3), w_min_cond=90)
+#
+#     print(f"{'Имя:'} - {weapon.name}")
+#     print(f"{'Тип:'} - {weapon.type}")
+#     print(f"{'Тир:'} - {weapon.tier}")
+#     print(f"{'Состояние:'} - {weapon.cond}%")
+#     print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
+#     print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
+#     print(f"{'Пробивание:'} - {weapon.pen}")
+#     print(f"{'Авторежим:'} - {weapon.is_auto}")
+#
+#     input()
+#     weapon.cond -= 10
+#
+#     print(f"{'Имя:'} - {weapon.name}")
+#     print(f"{'Тип:'} - {weapon.type}")
+#     print(f"{'Тир:'} - {weapon.tier}")
+#     print(f"{'Состояние:'} - {weapon.cond}%")
+#     print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
+#     print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
+#     print(f"{'Пробивание:'} - {weapon.pen}")
+#     print(f"{'Авторежим:'} - {weapon.is_auto}")
+#
+#     input()

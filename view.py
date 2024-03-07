@@ -13,9 +13,19 @@ class Display:
     def display_soldier_page(self, soldier):
         self.draw.cls()
         self.draw.title_shelter(self.squad.title, self.squad.money)
-        soldier_info = [('Имя: ', soldier.name), ('Уровень: ', soldier.lvl),('Оружие: ', soldier.weapon), ('Здоровье: ', f"{soldier.hp}/{soldier.maxhp}"),]
+        soldier_info = [('Имя: ', soldier.name), ('Уровень: ', soldier.lvl), ('Здоровье: ', f"{soldier.hp}/{soldier.maxhp}"),]
         self.draw.point_list(soldier_info, '    ДОСЬЕ:', True, ' ', '')
         self.draw.br()
+        weapon_info = [
+            (f"{soldier.weapon.type} ", soldier.weapon.name),
+            ('Состояние: ', f"{soldier.weapon.cond}%"),
+            ('Урон: ', f"{soldier.weapon.min_dmg}-{soldier.weapon.max_dmg}"),
+            ('Точность: ', f"{soldier.weapon.min_acc}-{soldier.weapon.max_acc}"),
+            ('Пробивание: ', f"{soldier.weapon.pen}"),
+        ]
+        self.draw.point_list(weapon_info, '    ЭКИПИРОВКА:', True, ' ', '')
+        self.draw.br()
+
 
     # УБЕЖИЩЕ
     def display_shelter_page(self):

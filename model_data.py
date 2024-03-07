@@ -221,7 +221,7 @@ missions = {
 }
 
 weapons = {
-    'pistol': {
+    'Пистолет': {
         1: {'PM':           {'dmg': 10, 'acc': 30, 'pen': 1, 'is_auto': False},
             'TT':           {'dmg': 12, 'acc': 30, 'pen': 1, 'is_auto': False},
             'P2000':        {'dmg': 14, 'acc': 35, 'pen': 1, 'is_auto': False},
@@ -238,7 +238,7 @@ weapons = {
             'CZ75':         {'dmg': 18, 'acc': 40, 'pen': 2, 'is_auto': True},
             'Desert Eagle': {'dmg': 20, 'acc': 60, 'pen': 3, 'is_auto': False},},
     },
-    'shotgun': {
+    'Дробовик': {
         1: {'ТОЗ-106':      {'dmg': 10, 'acc': 20, 'pen': 1, 'is_auto': False},
             'Двустволка':   {'dmg': 20, 'acc': 20, 'pen': 1, 'is_auto': False},
             'MP-133':       {'dmg': 22, 'acc': 22, 'pen': 1, 'is_auto': False},
@@ -252,7 +252,7 @@ weapons = {
             'Сайга-12':     {'dmg': 40, 'acc': 35, 'pen': 2, 'is_auto': False},
             'КС-23М':       {'dmg': 50, 'acc': 30, 'pen': 2, 'is_auto': False},},
     },
-    'pp': {
+    'Пистолет-пулемет': {
         1: {'PP-9 Kedr':    {'dmg': 20, 'acc': 50, 'pen': 2, 'is_auto': True},
             'MAC-10':       {'dmg': 22, 'acc': 45, 'pen': 2, 'is_auto': True},
             'PP-19 Bizon':  {'dmg': 20, 'acc': 45, 'pen': 2, 'is_auto': True},
@@ -266,7 +266,7 @@ weapons = {
             'Vector':       {'dmg': 40, 'acc': 60, 'pen': 4, 'is_auto': True},
             'MP7':          {'dmg': 45, 'acc': 65, 'pen': 4, 'is_auto': True},},
     },
-    'assault': {
+    'Автомат': {
         1: {'Famas':        {'dmg': 40, 'acc': 53, 'pen': 3, 'is_auto': True},
             'AKC-74У':      {'dmg': 45, 'acc': 55, 'pen': 3, 'is_auto': True},
             'Galil':        {'dmg': 40, 'acc': 50, 'pen': 3, 'is_auto': True}},
@@ -282,7 +282,7 @@ weapons = {
             'АШ-12':        {'dmg': 80, 'acc': 60, 'pen': 5, 'is_auto': True},
             'АС ВАЛ':       {'dmg': 50, 'acc': 75, 'pen': 5, 'is_auto': True},},
     },
-    'sniper': {
+    'Снайперская винтовка': {
         1: {'Mosin':        {'dmg': 70, 'acc': 80, 'pen': 4, 'is_auto': False},
             'ВПО-215':      {'dmg': 60, 'acc': 80, 'pen': 4, 'is_auto': False},
             'SSG-08':       {'dmg': 65, 'acc': 80, 'pen': 4, 'is_auto': False}},
