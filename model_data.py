@@ -1,14 +1,23 @@
-names = ['Jack', 'Lucy', 'Max', 'Anne', 'Noah', 'Ella', 'Liam', 'Lily', 'Alex', 'Emma', 'Jake', 'Maya', 'Owen', 'Zoe', 'Luke', 'Ava', 'Ryan', 'Mia', 'Mark', 'Kate', 'John', 'Jane', 'Dean', 'Erin', 'Carl', 'Leah', 'Cole', 'Sara', 'Paul', 'Ruby', 'Sean', 'Anna', 'Kyle', 'Elle', 'Eric', 'Nia', 'Ivan', 'Rosa', 'Adam', 'Lynn', 'Matt', 'June', 'Ross', 'Jade', 'Leon', 'Lisa', 'Joel', 'Beth', 'Evan', 'Ruth', 'Troy', 'Gail', 'Neal', 'Zoey', 'Seth', 'Iris', 'Dale', 'Amy', 'Greg', 'Hope', 'Dean', 'Nina', 'Hank', 'Sara', 'Glen', 'Dawn', 'Dale', 'Joy', 'Reed', 'Fern', 'Hugo', 'Jane', 'Eric', 'Gwen', 'Ivan', 'Kim', 'Luke', 'Nola', 'Kurt', 'Faye', 'Earl', 'Ada', 'Sean', 'Rosa', 'Matt', 'Lara', 'Alex', 'Joan', 'Todd', 'Nell', 'Alan', 'Tess', 'Paul', 'Elle', 'Owen', 'Anne', 'Gabe', 'Eve', 'Troy', 'Beth']
-surnames = ['Smith', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson', 'Clark', 'Rodriguez', 'Lewis', 'Lee', 'Walker', 'Hall', 'Allen', 'Young', 'Hernandez', 'King', 'Wright', 'Lopez', 'Hill', 'Scott', 'Green', 'Adams', 'Baker', 'Gonzalez', 'Nelson', 'Carter', 'Mitchell', 'Perez', 'Roberts', 'Turner', 'Phillips', 'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 'Stewart', 'Sanchez', 'Morris', 'Rogers', 'Reed', 'Cook', 'Morgan', 'Bell', 'Murphy', 'Bailey', 'Rivera', 'Cooper', 'Richardson', 'Cox', 'Howard', 'Ward', 'Torres', 'Peterson', 'Gray', 'Ramirez', 'James', 'Watson', 'Brooks', 'Kelly', 'Sanders', 'Price', 'Bennett', 'Wood', 'Barnes', 'Ross', 'Henderson', 'Coleman', 'Jenkins', 'Perry', 'Powell', 'Long', 'Patterson', 'Hughes', 'Flores', 'Washington', 'Butler', 'Simmons', 'Foster', 'Gonzales', 'Bryant', 'Alexander', 'Russell', 'Griffin', 'Diaz', 'Hayes', 'Myers']
-weapons = [
-    'AK-47', 'AR-15', 'M16', 'Glock 17', 'M1911', 'Beretta 92', 'MP5', 'Uzi', 'Remington 870', 'Mossberg 500',
-    'Ruger 10/22', 'Mosin-Nagant', 'M1 Garand', 'FN SCAR', 'SIG Sauer P226', 'SIG Sauer P320', 'Smith & Wesson Model 29',
-    'Springfield XD', 'Colt Python', 'Heckler & Koch MP7', 'Heckler & Koch G36', 'FN FAL', 'FN Five-seveN', 'Tavor TAR-21',
-    'Steyr AUG', 'Barrett M82', 'Desert Eagle', 'Thompson submachine gun', 'Winchester Model 70', 'Winchester Model 1894',
-    'SIG Sauer MPX', 'FN P90', 'Walther PPK', 'Mossberg Maverick 88', 'Browning Hi-Power', 'Remington 700', 'Colt AR-15',
-    'FN SCAR-H', 'Ruger Mini-14', 'Smith & Wesson M&P', 'Heckler & Koch USP', 'Heckler & Koch VP9', 'Heckler & Koch HK416',
-    'Heckler & Koch HK417', 'IWI Galil', 'IWI Tavor X95', 'IWI Jericho 941', 'Beretta M9', 'Beretta Px4 Storm'
-]
+from random import choice
+
+names = ['Jack', 'Lucy', 'Max', 'Anne', 'Noah', 'Ella', 'Liam', 'Lily', 'Alex', 'Emma', 'Jake', 'Maya', 'Owen', 'Zoe',
+         'Luke', 'Ava', 'Ryan', 'Mia', 'Mark', 'Kate', 'John', 'Jane', 'Dean', 'Erin', 'Carl', 'Leah', 'Cole', 'Sara',
+         'Paul', 'Ruby', 'Sean', 'Anna', 'Kyle', 'Elle', 'Eric', 'Nia', 'Ivan', 'Rosa', 'Adam', 'Lynn', 'Matt', 'June',
+         'Ross', 'Jade', 'Leon', 'Lisa', 'Joel', 'Beth', 'Evan', 'Ruth', 'Troy', 'Gail', 'Neal', 'Zoey', 'Seth', 'Iris',
+         'Dale', 'Amy', 'Greg', 'Hope', 'Dean', 'Nina', 'Hank', 'Sara', 'Glen', 'Dawn', 'Dale', 'Joy', 'Reed', 'Fern',
+         'Hugo', 'Jane', 'Eric', 'Gwen', 'Ivan', 'Kim', 'Luke', 'Nola', 'Kurt', 'Faye', 'Earl', 'Ada', 'Sean', 'Rosa',
+         'Matt', 'Lara', 'Alex', 'Joan', 'Todd', 'Nell', 'Alan', 'Tess', 'Paul', 'Elle', 'Owen', 'Anne', 'Gabe', 'Eve',
+         'Troy', 'Beth']
+surnames = ['Smith', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson',
+            'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson', 'Clark', 'Rodriguez', 'Lewis',
+            'Lee', 'Walker', 'Hall', 'Allen', 'Young', 'Hernandez', 'King', 'Wright', 'Lopez', 'Hill', 'Scott', 'Green',
+            'Adams', 'Baker', 'Gonzalez', 'Nelson', 'Carter', 'Mitchell', 'Perez', 'Roberts', 'Turner', 'Phillips',
+            'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 'Stewart', 'Sanchez', 'Morris', 'Rogers', 'Reed',
+            'Cook', 'Morgan', 'Bell', 'Murphy', 'Bailey', 'Rivera', 'Cooper', 'Richardson', 'Cox', 'Howard', 'Ward',
+            'Torres', 'Peterson', 'Gray', 'Ramirez', 'James', 'Watson', 'Brooks', 'Kelly', 'Sanders', 'Price',
+            'Bennett', 'Wood', 'Barnes', 'Ross', 'Henderson', 'Coleman', 'Jenkins', 'Perry', 'Powell', 'Long',
+            'Patterson', 'Hughes', 'Flores', 'Washington', 'Butler', 'Simmons', 'Foster', 'Gonzales', 'Bryant',
+            'Alexander', 'Russell', 'Griffin', 'Diaz', 'Hayes', 'Myers']
 
 missions = {
     'Устранение цели': {
@@ -209,5 +218,80 @@ missions = {
         19: "Цель - сопровождать колонну автобусов с беженцами через опасные территории к месту убежища.",
         20: "Ваша задача - охранять транспортные суда с гуманитарной помощью от пиратских нападений в международных водах."
     }
+}
+
+weapons = {
+    'pistol': {
+        1: {'PM':           {'dmg': 10, 'acc': 30, 'pen': 1, 'is_auto': False},
+            'TT':           {'dmg': 12, 'acc': 30, 'pen': 1, 'is_auto': False},
+            'P2000':        {'dmg': 14, 'acc': 35, 'pen': 1, 'is_auto': False},
+            'Beretta':      {'dmg': 15, 'acc': 30, 'pen': 1, 'is_auto': False},
+            'Glock-17':     {'dmg': 15, 'acc': 33, 'pen': 1, 'is_auto': False},
+            'USP-S':        {'dmg': 13, 'acc': 40, 'pen': 1, 'is_auto': False},},
+        2: {'P250':         {'dmg': 16, 'acc': 38, 'pen': 1, 'is_auto': False},
+            'Tec-9':        {'dmg': 18, 'acc': 35, 'pen': 1, 'is_auto': False},
+            'M1911':        {'dmg': 17, 'acc': 38, 'pen': 1, 'is_auto': False},
+            'Gurza':        {'dmg': 17, 'acc': 38, 'pen': 1, 'is_auto': False},
+            'FN 5-7':       {'dmg': 18, 'acc': 40, 'pen': 1, 'is_auto': False},},
+        3: {'APS':          {'dmg': 16, 'acc': 38, 'pen': 2, 'is_auto': True},
+            'Glock-18':     {'dmg': 18, 'acc': 42, 'pen': 2, 'is_auto': True},
+            'CZ75':         {'dmg': 18, 'acc': 40, 'pen': 2, 'is_auto': True},
+            'Desert Eagle': {'dmg': 20, 'acc': 60, 'pen': 3, 'is_auto': False},},
+    },
+    'shotgun': {
+        1: {'ТОЗ-106':      {'dmg': 10, 'acc': 20, 'pen': 1, 'is_auto': False},
+            'Двустволка':   {'dmg': 20, 'acc': 20, 'pen': 1, 'is_auto': False},
+            'MP-133':       {'dmg': 22, 'acc': 22, 'pen': 1, 'is_auto': False},
+            'Remington 870':{'dmg': 25, 'acc': 25, 'pen': 1, 'is_auto': False},
+            'Mossberg 500': {'dmg': 26, 'acc': 25, 'pen': 1, 'is_auto': False},},
+        2: {'Sawed-off':    {'dmg': 27, 'acc': 26, 'pen': 1, 'is_auto': False},
+            'MP-153':       {'dmg': 29, 'acc': 28, 'pen': 1, 'is_auto': False},
+            'MP-155':       {'dmg': 29, 'acc': 29, 'pen': 2, 'is_auto': False},},
+        3: {'XM1014':       {'dmg': 33, 'acc': 30, 'pen': 2, 'is_auto': False},
+            'MAG-7':        {'dmg': 35, 'acc': 33, 'pen': 2, 'is_auto': False},
+            'Сайга-12':     {'dmg': 40, 'acc': 35, 'pen': 2, 'is_auto': False},
+            'КС-23М':       {'dmg': 50, 'acc': 30, 'pen': 2, 'is_auto': False},},
+    },
+    'pp': {
+        1: {'PP-9 Kedr':    {'dmg': 20, 'acc': 50, 'pen': 2, 'is_auto': True},
+            'MAC-10':       {'dmg': 22, 'acc': 45, 'pen': 2, 'is_auto': True},
+            'PP-19 Bizon':  {'dmg': 20, 'acc': 45, 'pen': 2, 'is_auto': True},
+            'MP9':          {'dmg': 22, 'acc': 50, 'pen': 2, 'is_auto': True},
+            'PPSH-41':      {'dmg': 25, 'acc': 40, 'pen': 2, 'is_auto': True},},
+        2: {'MP-5':         {'dmg': 30, 'acc': 55, 'pen': 2, 'is_auto': True},
+            'Veresk':       {'dmg': 35, 'acc': 55, 'pen': 2, 'is_auto': True},
+            'UMP-45':       {'dmg': 38, 'acc': 50, 'pen': 2, 'is_auto': True},},
+        3: {'P90':          {'dmg': 40, 'acc': 55, 'pen': 3, 'is_auto': True},
+            'MPX':          {'dmg': 43, 'acc': 60, 'pen': 3, 'is_auto': True},
+            'Vector':       {'dmg': 40, 'acc': 60, 'pen': 4, 'is_auto': True},
+            'MP7':          {'dmg': 45, 'acc': 65, 'pen': 4, 'is_auto': True},},
+    },
+    'assault': {
+        1: {'Famas':        {'dmg': 40, 'acc': 53, 'pen': 3, 'is_auto': True},
+            'AKC-74У':      {'dmg': 45, 'acc': 55, 'pen': 3, 'is_auto': True},
+            'Galil':        {'dmg': 40, 'acc': 50, 'pen': 3, 'is_auto': True}},
+        2: {'AUG':          {'dmg': 42, 'acc': 60, 'pen': 4, 'is_auto': True},
+            'DT MDR':       {'dmg': 45, 'acc': 65, 'pen': 4, 'is_auto': True},
+            'SG-533':       {'dmg': 45, 'acc': 60, 'pen': 4, 'is_auto': True},
+            'AK-47':        {'dmg': 50, 'acc': 55, 'pen': 4, 'is_auto': True},
+            'SA-58':        {'dmg': 60, 'acc': 45, 'pen': 4, 'is_auto': True},
+            'M4A1':         {'dmg': 50, 'acc': 65, 'pen': 4, 'is_auto': True},},
+        3: {'AKM':          {'dmg': 65, 'acc': 65, 'pen': 5, 'is_auto': True},
+            'МК-47 Мутант': {'dmg': 70, 'acc': 70, 'pen': 5, 'is_auto': True},
+            'RD 704':       {'dmg': 65, 'acc': 70, 'pen': 5, 'is_auto': True},
+            'АШ-12':        {'dmg': 80, 'acc': 60, 'pen': 5, 'is_auto': True},
+            'АС ВАЛ':       {'dmg': 50, 'acc': 75, 'pen': 5, 'is_auto': True},},
+    },
+    'sniper': {
+        1: {'Mosin':        {'dmg': 70, 'acc': 80, 'pen': 4, 'is_auto': False},
+            'ВПО-215':      {'dmg': 60, 'acc': 80, 'pen': 4, 'is_auto': False},
+            'SSG-08':       {'dmg': 65, 'acc': 80, 'pen': 4, 'is_auto': False}},
+        2: {'ДВЛ-10':       {'dmg': 70, 'acc': 90, 'pen': 5, 'is_auto': False},
+            'СВ-98':        {'dmg': 65, 'acc': 85, 'pen': 5, 'is_auto': False},
+            'AWP':          {'dmg': 80, 'acc': 90, 'pen': 5, 'is_auto': False},
+            'Т5000 Орсис':  {'dmg': 75, 'acc': 90, 'pen': 5, 'is_auto': False},
+            'М-700':        {'dmg': 70, 'acc': 90, 'pen': 5, 'is_auto': False}},
+        3: {'AXMC.388':     {'dmg': 99, 'acc': 99, 'pen': 6, 'is_auto': False}},
+    },
 }
 

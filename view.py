@@ -24,7 +24,7 @@ class Display:
         # ОТРЯД
         list_of_members = []
         for soldier in self.squad.members:
-            list_of_members.append((f"[{soldier.lvl}] ", f"{soldier.name.upper()}  ", f"{green}{soldier.hp}/{soldier.maxhp}{reset}  ", f"{soldier.weapon}",))
+            list_of_members.append((f"[{soldier.lvl}] ", f"{soldier.name.upper()}  ", f"{green}{soldier.hp}/{soldier.maxhp}{reset}  ", f"{soldier.weapon.name} {soldier.weapon.cond}%",))
         self.draw.point_list(list_of_members, '    Моя команда:', True, ' ', '')
         self.draw.br()
         self.draw.line()
