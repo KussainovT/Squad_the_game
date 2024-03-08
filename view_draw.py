@@ -1,4 +1,5 @@
 import os
+import time
 import textwrap
 
 black = '\033[30m'
@@ -18,7 +19,7 @@ class Draw:
         self.text_width = self.width - 4 - 5
 
     # TITLE
-    def title(self, title, color):
+    def title(self, title, color=''):
         self.line()
         print(f"|   {color}{title.upper()}{reset}{' ' * (self.width - 5 - len(title))}|")
         self.line()
@@ -28,7 +29,7 @@ class Draw:
     def title_shelter(self, title, money):
         self.line()
         print(
-            f"|   {yellow}ЧВК {title.upper()}{reset}{' ' * (self.width - 8 - len(title) - len(str(money)) - 4)}{green}${money}{reset}  |")
+            f"|   {green}ЧВК {title.upper()}{reset}{' ' * (self.width - 8 - len(title) - len(str(money)) - 4)}{green}${money}{reset}  |")
         self.line()
         self.br()
 
@@ -48,10 +49,15 @@ class Draw:
                 print(f"  {point_symbol} {item}")
 
     # WRAPPED TEXT
-    def p_wrapped(self, text):
+    def p_wrapped(self, text='', color=''):
         wrapped_text = textwrap.wrap(text, self.text_width)
         for line in wrapped_text:
-            print(f"    {line}")
+            print(f"    {color}{line}{reset}")
+
+    def progress(self, text='', step=1, color=''):
+        for i in range(1, 100, step):
+            print(f"{color}{text}:{reset} {i}%", end='\r')
+            time.sleep(0.1)
 
     def line(self):
         print(f"+{'-' * (self.width - 2)}+")

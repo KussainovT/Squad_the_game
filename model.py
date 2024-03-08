@@ -5,33 +5,52 @@ from model_data import *
 class Squad:
     def __init__(self):
         self.title = None
-        self.commandor = None
-        self.money = 1000
-        self.members = [Soldier(), Soldier(), Soldier()]
-        self.stash = ['Самогон', 'Присадка', 'Видеокарта']
+        self.money = 10
+        self.members = []
+        self.stash = []
+        self.raid = None
 
 
 class Soldier:
     def __init__(self):
-        self.name = choice(names) + ' ' + choice(surnames)
-        self.lvl = randint(1, 2)
-        self.hp = round(randint(50, 120) / 10) * 10
+        self.lvl = 1
+        self.hp = 100
         self.maxhp = self.hp
-        self.weapon = Weapon()
+
+
+class Soldier_pmc(Soldier):
+    def __init__(self, name=None, is_commander=False, max_lvl=1,
+                 w_type_list: list = ['Пистолет', 'Дробовик', 'Пистолет-пулемет', 'Автомат', 'Снайперская винтовка'],
+                 max_w_tier=3, w_min_cond=80):
+        super().__init__()
+        self.name = (choice(names) + ' ' + choice(surnames) if name is None else name)
+        self.is_commander = is_commander
+        self.weapon = Weapon(w_type_list=w_type_list, w_tier=max_w_tier, w_min_cond=w_min_cond)
+        self.lvl = randint(1, max_lvl)
 
 
 class Weapon:
-    def __init__(self, w_type=None, w_tier=None, w_min_cond=None, w_name=None, w_list=weapons):
+    def __init__(self, w_type_list: list = None, w_tier=None, w_min_cond=None):
+
         # ТИП pistol, shotgun, assault, sniper
-        if w_type is None:
+        if w_type_list is None:
             rand = randint(1, 100)
-            print(rand)
             w_type = (
                 'Пистолет' if rand < 53 else 'Дробовик' if rand < 83 else 'Пистолет-пулемет' if rand < 93 else 'Автомат' if rand < 98 else 'Снайперская винтовка')
+        else:
+            while True:
+                rand = randint(1, 100)
+                w_type = (
+                    'Пистолет' if rand < 53 else 'Дробовик' if rand < 83 else 'Пистолет-пулемет' if rand < 93 else 'Автомат' if rand < 98 else 'Снайперская винтовка')
+                if w_type in w_type_list:
+                    break
+
         # ТИР 1, 2, 3
         if w_tier is None:
             rand = randint(1, 1000)
             w_tier = (1 if rand < 700 else 2 if rand < 900 else 3)
+        else:
+            w_tier = randint(1, w_tier)
 
         # СОСТОЯНИЕ
         if w_min_cond is None:
@@ -61,28 +80,30 @@ class Weapon:
         self.min_acc = round(self.max_acc / 100 * self._cond)
 
 
-# while True:
-#     weapon = Weapon(w_type='Автомат', w_tier=randint(2, 3), w_min_cond=90)
-#
-#     print(f"{'Имя:'} - {weapon.name}")
-#     print(f"{'Тип:'} - {weapon.type}")
-#     print(f"{'Тир:'} - {weapon.tier}")
-#     print(f"{'Состояние:'} - {weapon.cond}%")
-#     print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
-#     print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
-#     print(f"{'Пробивание:'} - {weapon.pen}")
-#     print(f"{'Авторежим:'} - {weapon.is_auto}")
-#
-#     input()
-#     weapon.cond -= 10
-#
-#     print(f"{'Имя:'} - {weapon.name}")
-#     print(f"{'Тип:'} - {weapon.type}")
-#     print(f"{'Тир:'} - {weapon.tier}")
-#     print(f"{'Состояние:'} - {weapon.cond}%")
-#     print(f"{'Урон:'} - {weapon.min_dmg}-{weapon.max_dmg}")
-#     print(f"{'Точность:'} - {weapon.min_acc}-{weapon.max_acc}%")
-#     print(f"{'Пробивание:'} - {weapon.pen}")
-#     print(f"{'Авторежим:'} - {weapon.is_auto}")
-#
-#     input()
+class Raid:
+    def __init__(self, location=None):
+        self.location = Location(location)
+
+    def get_location_point(self):
+        return choice(list(self.location.points.values()))
+
+    def get_location_exit(self):
+        return choice(list(self.location.exits.values()))
+
+
+class Location:
+    def __init__(self, location=None, locations_dict=locations):
+        if location in list(locations_dict.keys()):
+            self.title = location
+        else:
+            self.title = choice(list(locations_dict.keys()))
+        self.points = locations_dict[self.title]['points']
+        self.exits = locations_dict[self.title]['exits']
+        self.mission = Mission()
+
+
+class Mission:
+    def __init__(self, missions_dict=missions):
+        self.mission_type = choice(list(missions_dict.keys()))
+        self.mission_description = missions_dict[self.mission_type][randint(1, len(missions_dict[self.mission_type]))]
+        self.reward = round(randint(100, 500), -2)

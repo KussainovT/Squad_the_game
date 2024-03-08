@@ -23,8 +23,8 @@ while c.GAME:
         c.LOAD = False
         c.GAME = True
         c.SHELTER = True
-        input(f"{c.squad.commandor}, с возвращением в {c.squad.title}, продолжаем работать!")
-    if c.SAVE and c.squad.commandor is not None:
+        input(f"{c.squad.members[0].name.upper()}, с возвращением в {c.squad.title}, продолжаем работать!")
+    if c.SAVE and c.squad.members:
         c.SAVE = False
         c.MAINMENU = True
         savegame(c)
