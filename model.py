@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint, choice, shuffle
 from model_data import *
 
 
@@ -9,6 +9,9 @@ class Squad:
         self.members = []
         self.stash = []
         self.raid = None
+
+    def new_raid(self, location: str = None):
+        self.raid = Raid(location=location, squad_size=len(self.members))
 
 
 class Soldier:
@@ -24,6 +27,17 @@ class Soldier_pmc(Soldier):
                  max_w_tier=3, w_min_cond=80):
         super().__init__()
         self.name = (choice(names) + ' ' + choice(surnames) if name is None else name)
+        self.is_commander = is_commander
+        self.weapon = Weapon(w_type_list=w_type_list, w_tier=max_w_tier, w_min_cond=w_min_cond)
+        self.lvl = randint(1, max_lvl)
+
+
+class Soldier_scav(Soldier):
+    def __init__(self, name=None, is_commander=False, max_lvl=1,
+                 w_type_list: list = ['Пистолет', 'Дробовик', 'Пистолет-пулемет', 'Автомат'],
+                 max_w_tier=2, w_min_cond=30):
+        super().__init__()
+        self.name = (choice(scav_names) + ' ' + choice(scav_surnames) if name is None else name)
         self.is_commander = is_commander
         self.weapon = Weapon(w_type_list=w_type_list, w_tier=max_w_tier, w_min_cond=w_min_cond)
         self.lvl = randint(1, max_lvl)
@@ -81,14 +95,16 @@ class Weapon:
 
 
 class Raid:
-    def __init__(self, location=None):
+    def __init__(self, location=None, squad_size=1):
         self.location = Location(location)
+        self.squad_size = squad_size
+        self.encounter = False
 
-    def get_location_point(self):
-        return choice(list(self.location.points.values()))
-
-    def get_location_exit(self):
-        return choice(list(self.location.exits.values()))
+    def get_encounter(self):
+        if randint(1, 10) <= 3:
+            self.encounter = Encounter(max_size=self.squad_size)
+        else:
+            self.encounter = False
 
 
 class Location:
@@ -100,6 +116,19 @@ class Location:
         self.points = locations_dict[self.title]['points']
         self.exits = locations_dict[self.title]['exits']
         self.mission = Mission()
+        # Points of interest
+        self.points_number = randint(2, 4)
+        # Encounters
+
+    def get_points_list(self) -> list:
+        points_list = list(self.points.values())
+        shuffle(points_list)
+        return points_list
+
+    def get_exits_list(self) -> list:
+        exit_list = list(self.exits.values())
+        shuffle(exit_list)
+        return exit_list
 
 
 class Mission:
@@ -107,3 +136,15 @@ class Mission:
         self.mission_type = choice(list(missions_dict.keys()))
         self.mission_description = missions_dict[self.mission_type][randint(1, len(missions_dict[self.mission_type]))]
         self.reward = round(randint(100, 500), -2)
+
+
+class Encounter:
+    def __init__(self, max_size=1):
+        self.type = ('scav' if randint(1, 10) <= 8 else 'pmc')
+        self.enemy_squad = Squad()
+
+        for n in range(randint(1, max_size)):
+            if self.type == 'scav':
+                self.enemy_squad.members.append(Soldier_scav())
+            elif self.type == 'pmc':
+                self.enemy_squad.members.append(Soldier_pmc())

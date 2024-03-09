@@ -1,7 +1,8 @@
 from random import randint, choice
 from view import Display
-from model import Squad, Soldier_pmc, Raid
+from model import Squad, Soldier_pmc, Soldier_scav, Raid
 from controller_scripts import savegame, loadgame
+from controller_raid import Controller_Raid
 
 
 class Controller:
@@ -19,6 +20,7 @@ class Controller:
         self.view = view
         self.view.game_name = 'Tarkov Squad'
         self.view.squad = self.squad
+        self.controller_raid = Controller_Raid(view=self.view, squad=self.squad)
 
     # CREDITS
     def credits(self):
@@ -58,6 +60,8 @@ class Controller:
         self.squad.title = answer_list[0]
         self.squad.members.append(Soldier_pmc(name=answer_list[1], is_commander=True,
                                               w_type_list=['Пистолет-пулемет', 'Автомат'], w_min_cond=90))
+        self.squad.members.append(Soldier_pmc())
+        self.squad.members.append(Soldier_pmc())
         text = (f"Приветствую, командир {self.squad.members[0].name.upper()}! Ты вновь вступаешь в бой в мире Таркова. "
                 f"Твой отряд {self.squad.title.upper()} - твоя последняя надежда на выживание в этом безжалостном "
                 f"городе. Собери своих соратников, готовься к опасностям и действуй с умом. Судьба Таркова и твоя "
@@ -65,36 +69,6 @@ class Controller:
         self.view.display_text_page(self.squad.title, text)
         self.CREATESQUAD = False
         self.SHELTER = True
-
-
-
-
-
-    # РЕЙД
-    def raid(self):
-        # ВЫБОР ЛОКАЦИИ
-        self.view.display_shelter_page()
-        menu_dict = {'title': 'Локация:',
-                     'items': {'1': 'Завод', '2': 'Таможня', '3': 'Эпицентр', '4': 'Лес', '5': 'Развязка',
-                               '6': 'Резерв', '7': 'Улицы Таркова', '8': 'Маяк', '9': 'Берег', '10': 'Лаборатория'}}
-        choice = self.view.display_menu_block(menu_dict=menu_dict, is_title=True)
-        self.squad.raid = Raid(location=menu_dict['items'][choice])
-        # ТОЧКИ ИНТЕРЕСА И ВЫХОДЫ
-        points_list = []
-        while len(points_list) < randint(2, 4):
-            point = self.squad.raid.get_location_point()
-            if point not in points_list:
-                points_list.append(point)
-        points_list.append(self.squad.raid.get_location_exit())
-        # ОТОБРАЖЕНИЕ
-        self.view.display_raid_load_page()
-        self.view.display_raid_page(points_list)
-
-
-
-
-
-
 
 
     # УБЕЖИЩЕ
@@ -113,7 +87,7 @@ class Controller:
                     self.view.display_menu_block(menu_dict=menu_dict, is_title=False)
         # ПРОВЕРКА РЕЙДА
         if choice.isalpha() and choice.lower() in ['raid', 'рейд']:
-            self.raid()
+            self.controller_raid.start_raid()
 
         # КОМАНДА
         elif choice == '1':
@@ -122,7 +96,8 @@ class Controller:
                          'items': {'1': 'В рейд', '2': 'В госпиталь', '3': 'Нанять рекрутов', '0': 'Выйти'}}
             choice = self.view.display_menu_block(menu_dict=menu_dict, is_title=True)
             if choice == '1':
-                self.raid()
+                self.controller_raid.start_raid()
+
         # УБЕЖИЩЕ
         elif choice == '2':
             self.view.display_text_page('Убежище', 'Улучшайте убежище, чтобы получить доступ к бонусам')

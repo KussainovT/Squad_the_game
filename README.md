@@ -5,8 +5,8 @@ Status: W.I.P
 Squad: Done
 PMC: Done
 Weapons: Done
-
-Raids: in progress
+Raids: Done
+Encounters: Done
 
 Fights: to do
 Loot: to do
