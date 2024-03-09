@@ -11,15 +11,12 @@ class Display:
         self.game_name = None
         self.squad = None
 
-        # РЕЙД
-
-    def display_raid_page(self, points_list):
-
+    # РЕЙД
+    def display_raid_load_page(self):
         # ЗАГРУЗКА КАРТЫ
         self.draw.cls()
         self.draw.title(self.squad.raid.location.title)
         self.draw.p_wrapped(self.squad.raid.location.mission.mission_type.upper(), color=yellow)
-        self.draw.br()
         self.draw.p_wrapped(self.squad.raid.location.mission.mission_description)
         self.draw.br()
         self.draw.p_wrapped(f"{green}Награда: ${self.squad.raid.location.mission.reward}{reset}")
@@ -29,8 +26,8 @@ class Display:
         self.draw.progress(f'    ОЖИДАНИЕ ИГРОКОВ', step=randint(5, 10))
         print(' ' * 30, end='\r')
         self.draw.progress(f'    ВЫСАДКА В РЕЙД', step=randint(8, 10))
-        input("\n    ")
 
+    def display_raid_page(self, points_list):
         # ЭКРАН РЕЙДА
         raid_log = []
         action_list = ['Двигаемся', 'Бежим', 'Рашим', 'Передислоцируемся', 'Выдвигаемся']
@@ -47,6 +44,7 @@ class Display:
         # ХОД РЕЙДА
         for point in points_list:
             if point != points_list[-1]:
+
                 # Идем
                 action = f"{choice(action_list)} на точку {point.upper()}"
                 self.draw.progress(f"    {action}", step=randint(1, 5))
@@ -62,13 +60,13 @@ class Display:
                 self.draw.progress(f"    {action}", step=randint(1, 5))
                 raid_log.append(f"    {green}{action} 100%{reset}\n")
                 print(f"    {green}{action} 100%{reset}")
-                input(' >   ')
+                input(' >  ')
             else:
                 action = f"{choice(action_list)} к выходу {point.upper()}"
                 self.draw.progress(f"    {action}", step=randint(1, 5))
                 raid_log.append(f"    {green}{action} 100%{reset}\n")
                 print(f"    {green}{action} 100%{reset}")
-                input(' >   ')
+                input(' >  ')
 
         input('    РЕЙД ОКОНЧЕН')
 

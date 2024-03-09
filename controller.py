@@ -66,6 +66,10 @@ class Controller:
         self.CREATESQUAD = False
         self.SHELTER = True
 
+
+
+
+
     # РЕЙД
     def raid(self):
         # ВЫБОР ЛОКАЦИИ
@@ -83,7 +87,15 @@ class Controller:
                 points_list.append(point)
         points_list.append(self.squad.raid.get_location_exit())
         # ОТОБРАЖЕНИЕ
+        self.view.display_raid_load_page()
         self.view.display_raid_page(points_list)
+
+
+
+
+
+
+
 
     # УБЕЖИЩЕ
     def shelter(self):
