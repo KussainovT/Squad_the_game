@@ -19,6 +19,24 @@ class Soldier:
         self.lvl = 1
         self.hp = 100
         self.maxhp = self.hp
+        self.weapon = None
+
+    def attack(self, soldier):
+        # Рассчет урона
+        damage = randint(self.weapon.min_dmg, self.weapon.max_dmg)
+        # Рассчет точности
+        if self.weapon.is_auto:
+            accuracy = randint(0 if (self.weapon.min_acc - 10) <= 0 else (self.weapon.min_acc - 10), 0 if (self.weapon.max_acc - 5) <= 0 else (self.weapon.max_acc - 5))
+        else:
+            accuracy = randint(self.weapon.min_acc, self.weapon.max_acc)
+        # Стрельба
+        damage_list = []
+        for _ in range(3 if self.weapon.is_auto else 1):
+            hit = (damage if randint(1, 100) <= accuracy else 0)
+            soldier.hp -= hit
+            soldier.hp = max(soldier.hp, 0)
+            damage_list.append(-hit)
+        return damage_list
 
 
 class Soldier_pmc(Soldier):

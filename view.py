@@ -11,6 +11,7 @@ class Display:
         self.game_name = None
         self.squad = None
         self.raid_log = []
+        self.encounter_choise = ''
 
     # РЕЙД
     # ЭКРАН ЗАГРУЗКИ
@@ -27,6 +28,7 @@ class Display:
         self.draw.progress(f'    ОЖИДАНИЕ ИГРОКОВ', step=randint(9, 10))
         print(' ' * 30, end='\r')
         self.draw.progress(f'    ВЫСАДКА В РЕЙД', step=randint(9, 10))
+        print(f'    ВЫСАДКА В РЕЙД: {green}100%{reset}')
         input(' >  ')
 
     # ЭКРАН РЕЙДА
@@ -54,8 +56,8 @@ class Display:
         elif 'выход' in action:
             action_text = f"{choice(list(action['выход']))} к выходу {point.upper()}"
         self.draw.progress(text=f"    {action_text}", step=randint(4, 10))  # Прогресс бар
-        print(f"    {green}{action_text} 100%{reset}")  # Зеленый 100%
-        self.raid_log.append(f"    {green}{action_text} 100%{reset}")  # Лог
+        print(f"    {action_text} {green}100%{reset}")  # Зеленый 100%
+        self.raid_log.append(f"    {action_text} {green}100%{reset}")  # Лог
         # ENCOUNTER
         if encounter:
             if encounter.type == 'scav':
@@ -67,12 +69,11 @@ class Display:
             self.display_squad_block(squad=encounter.enemy_squad, title=f'    {red}Враги:{reset}', is_title=False)
             # ENCOUNTER MENU
             self.draw.br()
-            encounter_menu = {'title': 'Действия:', 'items': {'1': 'Напасть', '2': 'Уйти'},}
-            encounter_menu_choice = self.display_menu_block(menu_dict=encounter_menu, is_title=False)
-            if encounter_menu_choice == '1':
-                input('БИТВАААА!')
+            encounter_menu = {'title': 'Действия:', 'items': {'1': 'Напасть', '2': 'Уйти'}, }
+            self.encounter_choise = self.display_menu_block(menu_dict=encounter_menu, is_title=False)
+            if self.encounter_choise == '1':
                 self.raid_log.append(f"{encounter_text} {red}с которыми завязался бой{reset}")  # Лог
-            elif encounter_menu_choice == '2':
+            elif self.encounter_choise == '2':
                 self.raid_log.append(f"{encounter_text} {red}от которых удалось уйти{reset}")  # Лог
         if 'действие' in action:
             self.draw.br()
@@ -80,6 +81,32 @@ class Display:
             input(' >  ')
         if 'выход' in action:
             input('    РЕЙД ОКОНЧЕН')
+
+    # ЭКРАН БОЯ
+    def display_battle_page(self, squad1, squad2, battle_log=None):
+        self.draw.cls()
+        self.draw.title(title=f"БОЙ", color=red)
+        self.display_squad_block(squad1, '    Моя команда:')
+        self.draw.br()
+        self.draw.p_wrapped('ПРОТИВ', red)
+        self.draw.br()
+        self.display_squad_block(squad2, '    Моя команда:')
+        self.draw.br()
+        self.draw.line()
+        self.draw.br()
+        self.draw.p_wrapped(f"{yellow}Ход рейда:{reset}")
+        # Лог боя
+        if battle_log is not None:
+            for log in battle_log:
+                damage = ' '.join(str(txt) for txt in log[4])
+                string = f"    {log[0]}{log[1].upper()}{reset} атаковал {log[2]}{log[3].upper()}{reset} [{log[0]}{damage}{reset}]"
+                print(string)
+
+        input()
+
+
+
+
 
     # СТРАНИЦА СОЛДАТА
     def display_soldier_page(self, soldier):

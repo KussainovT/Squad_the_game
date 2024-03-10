@@ -15,7 +15,7 @@ reset = '\033[0m'
 
 class Draw:
     def __init__(self):
-        self.width = 60
+        self.width = 80
         self.text_width = self.width - 4 - 5
 
     # TITLE
